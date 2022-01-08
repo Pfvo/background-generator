@@ -26,15 +26,10 @@ h3 {
 
 }
 
-#randomizer {
-    background: rgba(130,130,130,.5);
-    color: rgba(0,0,0,.5);
-    border-radius: 900px;
-    padding: 5px 30px;
-    border: rgba(0,0,0,.5)
-    font-size: 2em;
-    font: 600 3.5em 'Raleway', sans-serif;
-    margin-top: 60px
-
+button {
+    padding:  0.4em 6em;
+    border-radius: 2000px;
+    font: 900 1em 'Raleway', sans-serif;
+    color: rgba(0,0,0,.7);
+    background: rgba(200, 200, 200, 0.3);
 }
-

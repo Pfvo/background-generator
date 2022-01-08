@@ -1,40 +1,44 @@
-var css = document.querySelector("h3");
+var body = document.querySelector("body");
 var color1 = document.querySelector(".color1");
 var color2 = document.querySelector(".color2");
-var body = document.getElementById("gradient");
-var randomizer = document.getElementById("randomizer");
-var colorArray = [0,1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"];
-var randomColor1 = "";
-var randomColor2 = "";
+var codeRgb = document.querySelector(".codeRgb");
+var codeHex = document.querySelector(".codeHex");
+var btn = document.querySelector("button")
+var hexChars = [0,1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"]
 
-function random(r) {
-	for (i = 0; i < 6; i++) {
-	r = r + colorArray[Math.floor(Math.random() * 15)]
-	}
-		return r
-}
 
-function randomBtn() {
-	color1.value = "#" + random(randomColor1);
-	color2.value = "#" + random(randomColor2);
-	setGradient();
-}
-
-function setGradient() {
-	body.style.background = 
-	"linear-gradient(to right, " 
-	+ color1.value 
-	+ ", " 
-	+ color2.value 
+function changeBg() {
+	document.body.style.background = "linear-gradient(to right, "
+	+ color1.value + ", "
+	+ color2.value
 	+ ")";
+	codeRgb.textContent = document.body.style.background + ";"
+	codeHex.textContent = "linear-gradient(to right, "
+	+ color1.value + ", "
+	+ color2.value
+	+ ");";
+};
 
-	css.textContent = body.style.background + ";";
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-setGradient();
+function generateHex() {
+	var min = 0;
+	var max = hexChars.length - 1;
+	rndHexColor = [];
+	for (i=0; i < 6; i++) {
+		rndHexColor.push(hexChars[getRndInteger(min, max)])
+	}
+	return "#" + rndHexColor.join("");
+}
 
-color1.addEventListener("input", setGradient);
+function getRandomColors() {
+	color1.value = generateHex();
+	color2.value = generateHex();
+	changeBg();
+}
 
-color2.addEventListener("input", setGradient);
-
-randomizer.addEventListener("click", randomBtn);
+color1.addEventListener("input", changeBg);
+color2.addEventListener("input", changeBg);
+btn.addEventListener("click", getRandomColors);
